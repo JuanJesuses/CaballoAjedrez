@@ -5,6 +5,11 @@ public class Caballo {
 	private Color color;
 	private Posicion posicion;
 	
+	Caballo (){
+		posicion.setFila(8);
+		posicion.setColumna('b');
+	}
+	
 	private void setPosicion(Posicion posicion) {
 		this.posicion=posicion;
 	}
