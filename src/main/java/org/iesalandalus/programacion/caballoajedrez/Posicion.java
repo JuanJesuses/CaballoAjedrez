@@ -23,6 +23,16 @@ public class Posicion {
 		
 	}
 	
+	public boolean equals(Posicion fc_A, Posicion fc_B) {
+		
+		if (fc_A.fila == fc_B.fila && fc_A.columna == fc_B.columna) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
 	public void setFila(int fila) {
 		
 		if (fila < 1 || fila > 8) {
