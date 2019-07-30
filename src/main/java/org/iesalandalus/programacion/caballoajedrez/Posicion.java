@@ -16,6 +16,13 @@ public class Posicion {
 		
 	}
 	
+	Posicion (Posicion p){
+		
+		fila=p.fila;
+		columna=p.columna;
+		
+	}
+	
 	public void setFila(int fila) {
 		
 		if (fila < 1 || fila > 8) {
