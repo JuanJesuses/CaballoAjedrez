@@ -5,6 +5,17 @@ public class Posicion {
 	private int fila;
 	private char columna;
 	
+	Posicion (int fila, char columna){
+		
+		if (fila < 1 || fila > 8 || columna < 'a' || columna > 'h') {
+			throw new IllegalArgumentException("Valores fuera de rango");
+		}else {
+			this.fila=fila;
+			this.columna=columna;
+		}
+		
+	}
+	
 	public void setFila(int fila) {
 		
 		if (fila < 1 || fila > 8) {
