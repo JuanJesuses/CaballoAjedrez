@@ -62,4 +62,13 @@ public class Posicion {
 		return columna;
 	}
 	
+	public String toString() {
+		
+		String mensaje="El caballo se encuentra en la posición fila: " + fila + " "
+				+ "columna: " + columna;
+		
+		return mensaje;
+		
+	}
+	
 }
