@@ -28,6 +28,24 @@ public class Caballo {
 		
 	}
 	
+	
+	Caballo(Color color, char columna){
+		
+		this.color=color;
+		this.posicion.setColumna(columna);
+		
+		if(this.posicion.getColumna() != 'b' || this.posicion.getColumna() != 'g') {
+			throw new IllegalArgumentException("La columna inicial por defecto debe ser b o g.");
+		}
+		
+		if(this.color==Color.BLANCO) {
+			posicion.setFila(1);
+		}else if(this.color==Color.NEGRO) {
+			posicion.setFila(8);
+		}
+		
+	}
+	
 	private void setPosicion(Posicion posicion) {
 		this.posicion=posicion;
 	}
