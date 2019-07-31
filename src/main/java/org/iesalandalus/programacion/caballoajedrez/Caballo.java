@@ -148,6 +148,14 @@ public class Caballo {
 		
 	}
 	
+	public boolean equals(Color colorA, Color colorB, Posicion fcA, Posicion fcB) {
+		if (colorA==colorB && fcA.getFila()==fcB.getFila() && fcA.getColumna()==fcB.getColumna()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	private void setPosicion(Posicion posicion) {
 		this.posicion=posicion;
 	}
