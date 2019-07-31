@@ -172,4 +172,11 @@ public class Caballo {
 		return color;
 	}
 	
+	public String toString() {
+		String mensaje="El caballo es de color " + color + " y se encuentra en la posición fila: "
+				+ posicion.getFila() + " columna: " + posicion.getColumna();
+		
+		return mensaje;
+	}
+	
 }
