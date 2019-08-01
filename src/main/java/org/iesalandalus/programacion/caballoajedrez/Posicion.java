@@ -7,7 +7,7 @@ public class Posicion {
 	
 	Posicion (int fila, char columna){
 		
-		if (fila < 1 || fila > 8 || columna < 'a' || columna > 'h') {
+		if (fila < 1 || fila > 8 || columna < 'a' || columna > 'g') {
 			throw new IllegalArgumentException("Valores fuera de rango");
 		}else {
 			this.fila=fila;
