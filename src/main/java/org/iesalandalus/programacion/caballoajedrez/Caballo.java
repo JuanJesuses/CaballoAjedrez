@@ -52,7 +52,7 @@ public class Caballo {
 			
 			case ARRIBA_IZQUIERDA:
 				
-				if(posicion.getFila() < 3 && posicion.getColumna() < 'b') {
+				if(posicion.getFila() < 3) {
 					throw new OperationNotSupportedException ("Error en la operación");
 				}else {
 					posicion.setFila(posicion.getFila() - 2);
@@ -63,7 +63,7 @@ public class Caballo {
 			
 			case ARRIBA_DERECHA:
 				
-				if(posicion.getFila() < 3 && posicion.getColumna() > 'g') {
+				if(posicion.getFila() < 3) {
 					throw new OperationNotSupportedException ("Error en la operación");
 				}else {
 					posicion.setFila(posicion.getFila() - 2);
@@ -74,7 +74,7 @@ public class Caballo {
 				
 			case DERECHA_ARRIBA:
 				
-				if(posicion.getFila() < 3 && posicion.getColumna() > 'g') {
+				if(posicion.getColumna() > 'g') {
 					throw new OperationNotSupportedException ("Error en la operación");
 				}else {
 					posicion.setFila(posicion.getFila() - 2);
@@ -86,7 +86,7 @@ public class Caballo {
 				
 			case DERECHA_ABAJO:
 				
-				if(posicion.getFila() > 6 && posicion.getColumna() > 'g') {
+				if(posicion.getColumna() > 'g') {
 					throw new OperationNotSupportedException("Error en la operción");
 				}else {
 					posicion.setFila(posicion.getFila() + 2);
@@ -97,7 +97,7 @@ public class Caballo {
 				
 			case ABAJO_DERECHA:
 				
-				if(posicion.getFila() > 6 && posicion.getColumna() > 'g') {
+				if(posicion.getColumna() > 'g') {
 					throw new OperationNotSupportedException("Error en la operción");
 				}else {
 					posicion.setFila(posicion.getFila() + 2);
@@ -108,18 +108,22 @@ public class Caballo {
 			
 			case ABAJO_IZQUIERDA:
 				
-				if(posicion.getFila() > 6 && posicion.getColumna() > 'b') {
-					throw new OperationNotSupportedException("Error en la operción");
-				}else {
-					posicion.setFila(posicion.getFila() + 2);
-					posicion.setColumna((char) (posicion.getColumna() - 1));
+				try {
+					if(posicion.getFila() > 6 ) {
+						throw new OperationNotSupportedException();
+					}else {
+						posicion.setFila(posicion.getFila() + 2);
+						posicion.setColumna((char)(posicion.getColumna()-1));
+					}
+				}catch(OperationNotSupportedException e) {
+					System.out.println("Error en la operación. Valores fuera de rango.");
 				}
 				
 				break;
 				
 			case IZQUIERDA_ARRIBA:
 				
-				if(posicion.getFila() > 3 && posicion.getColumna() < 'b') {
+				if(posicion.getFila() > 3) {
 					throw new OperationNotSupportedException("Error en la operción");
 				}else {
 					posicion.setFila(posicion.getFila() - 2);
@@ -130,7 +134,7 @@ public class Caballo {
 				
 			case IZQUIERDA_ABAJO:
 				
-				if(posicion.getFila() > 6 && posicion.getColumna() < 'b') {
+				if(posicion.getFila() > 6) {
 					throw new OperationNotSupportedException("Error en la operción");
 				}else {
 					posicion.setFila(posicion.getFila() + 2);

@@ -36,7 +36,13 @@ public class MainApp {
 		opcion=Entrada.entero();
 		
 		while(opcion < 1 || opcion > 5) {
-			System.out.println("Opción incorrecta. Escoge otra opción: ");
+			System.out.println("Opción incorrecta. Tienes que escoger una de las siguientes opciones: ");
+			System.out.println("\nEscoje una de las siguientes opciones: ");
+			System.out.println("1. Crear un caballo por defecto.");
+			System.out.println("2. Crear un caballo y darle color.");
+			System.out.println("3. Crear un caballo de un color en una posición válida.");
+			System.out.println("4. Mover el caballo.");
+			System.out.println("5. Salir de la aplicación");
 			opcion=Entrada.entero();
 		}		
 		

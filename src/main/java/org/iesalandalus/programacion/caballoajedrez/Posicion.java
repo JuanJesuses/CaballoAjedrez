@@ -63,7 +63,7 @@ public class Posicion {
 			}
 		}catch (IllegalArgumentException e) {
 			System.out.println("Los números de fila deben estar comprendidos entre"
-					+ "1 y 8, ambos inclusive.");
+					+ " 1 y 8, ambos inclusive.");
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class Posicion {
 	public void setColumna(char columna) {
 		
 		try {
-			if (columna < 'a' || columna > 'h') {
+			if (columna < 'a' || columna > 'g') {
 				throw new IllegalArgumentException();
 			}else {
 				this.columna=columna;
