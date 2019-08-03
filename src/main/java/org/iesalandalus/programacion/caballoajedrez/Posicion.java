@@ -7,19 +7,39 @@ public class Posicion {
 	
 	Posicion (int fila, char columna){
 		
-		if (fila < 1 || fila > 8 || columna < 'a' || columna > 'g') {
-			throw new IllegalArgumentException("Valores fuera de rango");
-		}else {
-			this.fila=fila;
-			this.columna=columna;
+		try {
+			if (fila < 1 || fila > 8) {
+				throw new IllegalArgumentException();
+			}else {
+				setFila(fila);
+			}
+		}catch (IllegalArgumentException e) {
+			System.out.println("Valores fuera de rango.");
+		}
+		
+		try {
+			if (columna < 'a' || columna > 'h') {
+				throw new IllegalArgumentException();
+			}else {
+				setColumna(columna);
+			}
+		}catch(IllegalArgumentException e) {
+			System.out.println("Valores fuera de rango");
 		}
 		
 	}
 	
 	Posicion (Posicion p){
-		
-		fila=p.fila;
-		columna=p.columna;
+		try {
+			if(p==null) {
+				throw new IllegalArgumentException();
+			}
+		}catch(IllegalArgumentException e) {
+			System.out.println("ERROR. No puede existir una posición  nula.");
+		}
+				
+		p.fila=this.getFila();
+		p.columna=this.getColumna();
 		
 	}
 	
@@ -35,13 +55,16 @@ public class Posicion {
 	
 	public void setFila(int fila) {
 		
-		if (fila < 1 || fila > 8) {
-			throw new IllegalArgumentException("Los números de fila"
-					+ "deben estar comprendidos entre 1 y 8 ambos inclusive");
-		}else {
-			this.fila=fila;
+		try {
+			if (fila < 1 || fila > 8) {
+				throw new IllegalArgumentException();
+			}else {
+				this.fila=fila;
+			}
+		}catch (IllegalArgumentException e) {
+			System.out.println("Los números de fila deben estar comprendidos entre"
+					+ "1 y 8, ambos inclusive.");
 		}
-		
 	}
 	
 	public int getFila() {
@@ -50,12 +73,16 @@ public class Posicion {
 	
 	public void setColumna(char columna) {
 		
-		if (columna < 'a' || columna > 'h') {
-			throw new IllegalArgumentException("Las columnas deben estar comprendidas entre las letras"
-					+ "a y h");
-		}else {
-			this.columna=columna;
+		try {
+			if (columna < 'a' || columna > 'h') {
+				throw new IllegalArgumentException();
+			}else {
+				this.columna=columna;
+			}
+		}catch(IllegalArgumentException e) {
+			System.out.println("Las columnas deben estar comprendidas entre las letras a y h.");
 		}
+		
 	}
 	
 	public char getColumna() {

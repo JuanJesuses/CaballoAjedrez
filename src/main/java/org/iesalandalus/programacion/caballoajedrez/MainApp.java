@@ -6,101 +6,89 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class MainApp {
 	
+	private static Caballo caballo = null;
+	
 	public static void main(String[] args) {
 		System.out.println("Programa para aprender a colocar y mover un caballo en el tablero de ajedrez");
 		
+		mostrarMenu();
+		
 	}
 	
-	private void mostrarMenu() {
+	private static void mostrarMenu() {
 		
-		System.out.println("Escoje una de las siguientes opciones: ");
+		System.out.println("\nEscoje una de las siguientes opciones: ");
 		System.out.println("1. Crear un caballo por defecto.");
 		System.out.println("2. Crear un caballo y darle color.");
 		System.out.println("3. Crear un caballo de un color en una posición válida.");
 		System.out.println("4. Mover el caballo.");
 		System.out.println("5. Salir de la aplicación");
+		ejecutarOpcion(elegirOpcion());
 		
 				
 	}
 	
-	private int elegirOpcion() {
+	private static int elegirOpcion() {
 		
 		int opcion;
 		
-		do {
-			
-			mostrarMenu();
-			
-			do {
-				System.out.println("Escoge una opción: ");
-				opcion=Entrada.entero();
-				System.out.println("Entrada no válida, escoge un número correcto: ");
-				
-			}while(opcion < 1 || opcion > 6);
-			
-			System.out.println("Escoge una opción: ");
+		System.out.println("Escoge una opción: ");
+		opcion=Entrada.entero();
+		
+		while(opcion < 1 || opcion > 5) {
+			System.out.println("Opción incorrecta. Escoge otra opción: ");
 			opcion=Entrada.entero();
-			
-			
-			ejecutarOpcion(opcion);
-				
-		}while(opcion != 5);
+		}		
+		
 		
 		return opcion;
 	}
 	
-	private void ejecutarOpcion(int opcion) {
+	private static void ejecutarOpcion(int opcion) {
 		
 		switch(opcion) {
 		
 			case 1:
 				crearCaballoDefecto();
+				mostrarMenu();
 			break;
 			
 			case 2:
 				crearCaballoDefectoColor();
+				mostrarMenu();
 			break;
 			
 			case 3:
-				elegirColor();
+				crearCaballoColorPosicion();
+				mostrarMenu();
 			break;
 			
 			case 4:
-				crearCaballoColorPosicion();
-			break;
-			
-			case 5:
-				elegirColumnaInicial();
-			break;
-			
-			case 6:
-				mover();
-			break;
-			
-			case 7:
 				mostrarMenuDirecciones();
 			break;
 			
-			default:
-				elegirDireccion();
-		
+			case 5:
+				System.out.println("Ha escogido salir del programa.");
+				System.exit(0);
+			break;
+	
 		}
 	}
 	
-	private void crearCaballoDefecto() {
-		Caballo c = new Caballo();
-		c.toString();
+	private static void crearCaballoDefecto() {
+		caballo = new Caballo();
+		System.out.println("\nSe ha creado un nuevo caballo por defecto\n " + caballo);
 	}
 	
-	private void crearCaballoDefectoColor() {
+	private static void crearCaballoDefectoColor() {
 		
-		Caballo c = new Caballo(elegirColor());
-		c.toString();
+		caballo = new Caballo(elegirColor());
+		System.out.println("\nSe ha creado un nuevo caballo con el color elegido por tí\n " + caballo);
 	}
 	
-	private Color elegirColor() {
+	private static Color elegirColor() {
 		
-		System.out.println("Escoge un color por defecto para el caballo: ");
+		System.out.println("\nEscoge un color por defecto para el caballo: ");
 		System.out.println("1. Color Blanco.");
 		System.out.println("2. Color Negro. ");
 		
@@ -117,17 +105,17 @@ public class MainApp {
 		return color;
 	}
 	
-	private void crearCaballoColorPosicion() {
+	private static void crearCaballoColorPosicion() {
 		
-		Caballo c = new Caballo(elegirColor(), elegirColumnaInicial());
-		c.toString();
+		caballo = new Caballo(elegirColor(), elegirColumnaInicial());
+		System.out.println("\nSe ha creado un nuevo caballo con color y posición elegida por tí\n " + caballo);
 		
 	}
 	
-	private char elegirColumnaInicial() {
+	private static char elegirColumnaInicial() {
 		
-		System.out.println("Escoge la columna inicial de tu caballo sobre el tablero: ");
-		System.out.println("Las columnas admitidas están entre la a y la g");
+		System.out.println("\nEscoge la columna inicial de tu caballo sobre el tablero: ");
+		System.out.println("Las columnas deben ser B o G");
 		
 		char columna = Entrada.caracter();
 		
@@ -135,50 +123,60 @@ public class MainApp {
 		
 	}
 	
-	private void mover() {
-		mostrarMenuDirecciones();
-		elegirDireccion();
+	private static void mover() {
+		
+		try {
+			caballo.mover(elegirDireccion());
+			System.out.println("El caballo se ha movido " + caballo);
+			mostrarMenu();
+		}catch(OperationNotSupportedException e){
+			System.out.println("ERROR: Movimiento no válido");
+		}
+		mover();
 	}
 	
-	private void mostrarMenuDirecciones() {
+	private static void mostrarMenuDirecciones() {
 		
 		System.out.println("Los moviemientos del caballo puede ser los siguientes: ");
 		System.out.println("1. ARRIBA_IZQUIERDA"
-				+ "\2. ARRIBA_DERECHA"
+				+ "\n2. ARRIBA_DERECHA"
 				+ "\n3. DERECHA_ARRIBA"
 				+ "\n4. DERECHA_ABAJO"
 				+ "\n5. ABAJO_DERECHA"
 				+ "\n6. ABAJO_IZQUIERDA"
 				+ "\n7. IZQUIERDA_ARRIBA"
-				+ "8. IZQUIERDA_ABAJO");
+				+ "\n8. IZQUIERDA_ABAJO");
+		
+		mover();
 		
 	}
 	
-	private Direccion elegirDireccion() {
-		
-		
-		System.out.println("Escoge el movimiento de tu caballo: ");
-		
-		int mover = Entrada.entero();
-		
+	private static Direccion elegirDireccion() {
+				
 		Direccion movimiento = null;
-			
+		int mover;
+		
+		do {
+			System.out.println("Escoge el movimiento de tu caballo: ");
+			mover = Entrada.entero();
+		}while(mover < 1 || mover > 8);
+		
 		if(mover==1) {
-			movimiento = movimiento.ARRIBA_IZQUIERDA;
+			movimiento = Direccion.ARRIBA_IZQUIERDA;
 		}else if(mover==2) {
-			movimiento = movimiento.ARRIBA_DERECHA;
+			movimiento = Direccion.ARRIBA_DERECHA;
 		}else if(mover==3) {
-			movimiento = movimiento.DERECHA_ARRIBA;
+			movimiento = Direccion.DERECHA_ARRIBA;
 		}else if(mover==4) {
-			movimiento = movimiento.DERECHA_ABAJO;
+			movimiento = Direccion.DERECHA_ABAJO;
 		}else if(mover==5) {
-			movimiento = movimiento.ABAJO_DERECHA;
+			movimiento = Direccion.ABAJO_DERECHA;
 		}else if(mover==6) {
-			movimiento = movimiento.ABAJO_IZQUIERDA;
+			movimiento = Direccion.ABAJO_IZQUIERDA;
 		}else if(mover==7) {
-			movimiento = movimiento.IZQUIERDA_ARRIBA;
+			movimiento = Direccion.IZQUIERDA_ARRIBA;
 		}else {
-			movimiento = movimiento.IZQUIERDA_ABAJO;
+			movimiento = Direccion.IZQUIERDA_ABAJO;
 		}
 			
 		return movimiento;		

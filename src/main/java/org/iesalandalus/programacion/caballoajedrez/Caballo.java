@@ -8,8 +8,8 @@ public class Caballo {
 	private Posicion posicion;
 	
 	Caballo(){
-		posicion.setFila(8);
-		posicion.setColumna('b');
+		color = color.NEGRO;
+		posicion = new Posicion(8, 'b');
 	}
 	
 	Caballo(Color color){
@@ -18,13 +18,11 @@ public class Caballo {
 		
 		if(this.color==Color.BLANCO) {
 			
-			this.posicion.setFila(1);
-			this.posicion.setColumna('b');
+			posicion = new Posicion(1, 'b');
 			
 		}else if (this.color==Color.NEGRO) {
 			
-			this.posicion.setFila(8);
-			this.posicion.setColumna('b');
+			posicion = new Posicion(8,'b');
 			
 		}
 		
@@ -34,16 +32,15 @@ public class Caballo {
 	Caballo(Color color, char columna){
 		
 		this.color=color;
-		this.posicion.setColumna(columna);
-		
-		if(this.posicion.getColumna() != 'b' || this.posicion.getColumna() != 'g') {
+				
+		if(columna != 'b' && columna != 'g') {
 			throw new IllegalArgumentException("La columna inicial por defecto debe ser b o g.");
 		}
 		
 		if(this.color==Color.BLANCO) {
-			posicion.setFila(1);
+			posicion = new Posicion(1, columna);
 		}else if(this.color==Color.NEGRO) {
-			posicion.setFila(8);
+			posicion = new Posicion(8, columna);
 		}
 		
 	}
@@ -111,7 +108,7 @@ public class Caballo {
 			
 			case ABAJO_IZQUIERDA:
 				
-				if(posicion.getFila() > 6 && posicion.getColumna() > 'g') {
+				if(posicion.getFila() > 6 && posicion.getColumna() > 'b') {
 					throw new OperationNotSupportedException("Error en la operción");
 				}else {
 					posicion.setFila(posicion.getFila() + 2);
